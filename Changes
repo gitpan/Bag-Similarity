@@ -1,4 +1,7 @@
 Revision history for Bag-Similarity
 
+0.002  2014-08-06 00:12:50 CEST
+        - added cosine
+
 0.001  2014-08-05 23:45:03 CEST
         - Initial release

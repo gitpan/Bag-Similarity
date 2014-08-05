@@ -2,7 +2,7 @@ package Bag::Similarity;
 
 use strict;
 use 5.008_005;
-our $VERSION = '0.001';
+our $VERSION = '0.002';
 
 sub new {
   my $class = shift;
