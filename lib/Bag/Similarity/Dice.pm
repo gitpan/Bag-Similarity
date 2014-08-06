@@ -1,4 +1,4 @@
-package Bag::Similarity::Cosine;
+package Bag::Similarity::Dice;
 
 use strict;
 use warnings;
@@ -21,11 +21,15 @@ sub _similarity {
   my $vector1 = $self->make_vector( $tokens1 );
   my $vector2 = $self->make_vector( $tokens2 );
 
-  my $cosine = $self->cosine( 
-	$self->normalize($vector1), 
-	$self->normalize($vector2) 
+  my $dot = $self->dot( 
+	$vector1, 
+	$vector2 
   );
-  return $cosine;
+  my $dice = 2 * $dot / (
+    $self->norm($vector1) ** 2 
+    + $self->norm($vector2) ** 2
+  );
+  return $dice;
 }
 
 sub make_vector {			
@@ -35,12 +39,6 @@ sub make_vector {
   return \%elements;
 }	
 
-# Assumes both incoming vectors are normalized
-sub cosine {
-  my ( $self, $vector1, $vector2 ) = @_;
-  return $self->dot( $vector1, $vector2 );	# inner product
-}
-
 sub norm {
   my $self = shift;
   my $vector = shift;
@@ -49,14 +47,6 @@ sub norm {
     $sum += $vector->{$key} ** 2;
   }
   return sqrt $sum;
-}
-
-sub normalize {
-  my $self = shift;
-  my $vector = shift;
-  my $vnorm = $self->norm($vector);
-
-  return $self->div($vector,$vnorm);
 }
 
 sub dot {
@@ -72,21 +62,6 @@ sub dot {
   return $dotprod;
 }
 
-
-# divides each vector entry by a given divisor
-sub div {
-  my $self = shift;
-  my $vector = shift;
-  my $divisor = shift;
-
-  my $vector2 =  {};
-  for my $key (keys %$vector) {
-    $vector2->{$key} = $vector->{$key} / $divisor;
-  }
-  return $vector2;
-}
-
-
 1;
 
 
@@ -94,22 +69,22 @@ __END__
 
 =head1 NAME
 
-Bag::Similarity::Cosine - Cosine similarity for sets
+Bag::Similarity::Dice - Dice similarity for bags
 
 =head1 SYNOPSIS
 
- use Bag::Similarity::Cosine;
+ use Bag::Similarity::Dice;
  
  # object method
- my $cosine = Bag::Similarity::Cosine->new;
- my $similarity = $cosine->similarity('Photographer','Fotograf');
+ my $dice = Bag::Similarity::Dice->new;
+ my $similarity = $dice->similarity('Photographer','Fotograf');
  
  
 =head1 DESCRIPTION
 
-=head2 Cosine similarity
+=head2 Dice similarity
 
-A intersection B / (sqrt(A) * sqrt(B))
+2 * dot(A,B) / (norm(A) ** 2 + norm(B) ** 2) 
 
 
 =head1 METHODS

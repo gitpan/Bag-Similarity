@@ -1,5 +1,8 @@
 Revision history for Bag-Similarity
 
+0.004  2014-08-07 00:08:23 CEST
+       - added Dice, Jaccard, tests
+
 0.003  2014-08-06 22:40:25 CEST
        - cleanup
 
