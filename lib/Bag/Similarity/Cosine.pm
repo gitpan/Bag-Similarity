@@ -5,7 +5,7 @@ use warnings;
 
 use parent 'Bag::Similarity';
 
-our $VERSION = '0.002';
+our $VERSION = '0.003';
 
 sub from_bags {
   my ($self, $set1, $set2) = @_;
@@ -59,16 +59,6 @@ sub normalize {
   return $self->div($vector,$vnorm);
 }
 
-sub zeros {
-  my $self = shift;
-  my $count = shift;
-  my $vector = [];
-  for my $index (0..$count-1) {
-    $vector->[$index] = 0;
-  }
-  return $vector;
-}
-
 sub dot {
   my $self = shift;
   my $vector1 = shift;
@@ -114,51 +104,7 @@ Bag::Similarity::Cosine - Cosine similarity for sets
  my $cosine = Bag::Similarity::Cosine->new;
  my $similarity = $cosine->similarity('Photographer','Fotograf');
  
- # class method
- my $cosine = 'Bag::Similarity::Cosine';
- my $similarity = $cosine->similarity('Photographer','Fotograf');
  
- # from 2-grams
- my $width = 2;
- my $similarity = $cosine->similarity('Photographer','Fotograf',$width);
- 
- # from arrayref of tokens
- my $similarity = $cosine->similarity(['a','b'],['b']);
- 
- # from hashref of features
- my $bird = {
-   wings    => true,
-   eyes     => true,
-   feathers => true,
-   hairs    => false,
-   legs     => true,
-   arms     => false,
- };
- my $mammal = {
-   wings    => false,
-   eyes     => true,
-   feathers => false,
-   hairs    => true,
-   legs     => true,
-   arms     => true, 
- };
- my $similarity = $cosine->similarity($bird,$mammal);
- 
- # from arrayref sets
- my $bird = [qw(
-   wings
-   eyes
-   feathers
-   legs
- )];
- my $mammal = [qw(
-   eyes
-   hairs
-   legs
-   arms
- )];
- my $similarity = $cosine->from_sets($bird,$mammal);
-
 =head1 DESCRIPTION
 
 =head2 Cosine similarity
@@ -171,9 +117,9 @@ A intersection B / (sqrt(A) * sqrt(B))
 L<Bag::Similarity::Cosine> inherits all methods from L<Bag::Similarity> and implements the
 following new ones.
 
-=head2 from_sets
+=head2 from_bags
 
-  my $similarity = $object->from_sets(['a'],['b']);
+  my $similarity = $object->from_bags(['a'],['b']);
  
 This method expects two arrayrefs of strings as parameters. The parameters are not checked, thus can lead to funny results or uncatched divisions by zero.
  
