@@ -1,8 +1,10 @@
 package Bag::Similarity;
 
 use strict;
+use warnings;
+
 use 5.008_005;
-our $VERSION = '0.004';
+our $VERSION = '0.005';
 
 sub new {
   my $class = shift;
@@ -78,24 +80,8 @@ sub from_sets {
 
   # ( A intersect B ) / min(A,B)  
   return (
-    $self->intersection($set1,$set2) / $self->min($set1,$set2)
+    #$self->intersection($set1,$set2) / $self->min($set1,$set2)
   );
-}
-
-sub intersection { 
-  my %uniq;
-  @uniq{@{$_[1]}} = ();
-  scalar grep { exists $uniq{$_} } @{$_[2]};
-}
-
-sub uniq {
-  my %uniq; 
-  @uniq{@{$_[1]}} = ();
-  return keys %uniq; 
-}
-
-sub combined_length {
-  scalar(@{$_[1]}) + scalar(@{$_[2]});
 }
 
 sub min {
@@ -127,7 +113,7 @@ Helmut Wollmersdorfer E<lt>helmut.wollmersdorfer@gmail.comE<gt>
 
 =head1 COPYRIGHT
 
-Copyright 2014- Helmut Wollmersdorfer
+Copyright 2014 Helmut Wollmersdorfer
 
 =head1 LICENSE
 

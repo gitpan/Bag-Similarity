@@ -1,5 +1,8 @@
 Revision history for Bag-Similarity
 
+0.005  2014-08-07 22:15:54 CEST
+       - documentation ipmprovement
+
 0.004  2014-08-07 00:08:23 CEST
        - added Dice, Jaccard, tests
 

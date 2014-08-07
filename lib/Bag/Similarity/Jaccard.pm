@@ -6,7 +6,7 @@ use warnings;
 use parent 'Bag::Similarity';
 use Bag::Similarity::Dice;
 
-our $VERSION = '0.004';
+our $VERSION = '0.005';
 
 sub from_bags {
   my ($self, $bag1, $bag2) = @_;
@@ -54,7 +54,7 @@ following new ones.
  
 This method expects two arrayrefs of strings as parameters. The parameters are not checked, thus can lead to funny results or uncatched divisions by zero.
  
-If you want to use this method directly, you should take care that the elements are unique. Also you should catch the situation where one of the arrayrefs is empty (similarity is 0), or both are empty (similarity is 1).
+If you want to use this method directly, you should catch the situation where one of the arrayrefs is empty (similarity is 0), or both are empty (similarity is 1).
 
 =head1 SOURCE REPOSITORY
 
@@ -66,7 +66,7 @@ Helmut Wollmersdorfer, E<lt>helmut.wollmersdorfer@gmail.comE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2013-2014 by Helmut Wollmersdorfer
+Copyright (C) 2014 by Helmut Wollmersdorfer
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
