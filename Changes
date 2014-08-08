@@ -1,5 +1,8 @@
 Revision history for Bag-Similarity
 
+0.006  2014-08-08 22:46:51 CEST
+       - remove default method and croak
+
 0.005  2014-08-07 22:15:54 CEST
        - documentation ipmprovement
 

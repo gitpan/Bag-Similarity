@@ -22,11 +22,12 @@ no_index:
     - eg
     - examples
 requires:
+  Carp: '0'
   perl: '5.008005'
 resources:
   bugtracker: https://github.com/wollmers/Bag-Similarity/issues
   homepage: https://github.com/wollmers/Bag-Similarity
   repository: https://github.com/wollmers/Bag-Similarity.git
-version: '0.005'
+version: '0.006'
 x_contributors:
   - 'Helmut Wollmersdorfer <helmut@wollmersdorfer.at>'

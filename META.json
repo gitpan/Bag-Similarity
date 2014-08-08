@@ -36,6 +36,7 @@
       },
       "runtime" : {
          "requires" : {
+            "Carp" : "0",
             "perl" : "5.008005"
          }
       },
@@ -57,7 +58,7 @@
          "web" : "https://github.com/wollmers/Bag-Similarity"
       }
    },
-   "version" : "0.005",
+   "version" : "0.006",
    "x_contributors" : [
       "Helmut Wollmersdorfer <helmut@wollmersdorfer.at>"
    ]
