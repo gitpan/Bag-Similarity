@@ -5,25 +5,14 @@ use warnings;
 
 use parent 'Bag::Similarity';
 
-our $VERSION = '0.006';
+our $VERSION = '0.007';
 
 sub from_bags {
-  my ($self, $set1, $set2) = @_;
-  return $self->_similarity(
-	$set1,
-	$set2
-  );
-}
-
-sub _similarity {
-  my ( $self, $tokens1,$tokens2 ) = @_;
-		
-  my $vector1 = $self->make_vector( $tokens1 );
-  my $vector2 = $self->make_vector( $tokens2 );
-
+  my ($self, $bag1, $bag2) = @_;
+  
   my $cosine = $self->cosine( 
-	$self->normalize($vector1), 
-	$self->normalize($vector2) 
+	$self->normalize($self->make_vector( $bag1 )), 
+	$self->normalize($self->make_vector( $bag2 )) 
   );
   return $cosine;
 }
@@ -36,10 +25,7 @@ sub make_vector {
 }	
 
 # Assumes both incoming vectors are normalized
-sub cosine {
-  my ( $self, $vector1, $vector2 ) = @_;
-  return $self->dot( $vector1, $vector2 );	# inner product
-}
+sub cosine { shift->dot( @_ ) }
 
 sub norm {
   my $self = shift;
@@ -54,9 +40,11 @@ sub norm {
 sub normalize {
   my $self = shift;
   my $vector = shift;
-  my $vnorm = $self->norm($vector);
 
-  return $self->div($vector,$vnorm);
+  return $self->div(
+    $vector,
+    $self->norm($vector)
+  );
 }
 
 sub dot {
