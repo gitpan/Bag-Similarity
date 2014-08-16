@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use 5.008_005;
-our $VERSION = '0.007';
+our $VERSION = '0.008';
 
 use Carp 'croak';
 
@@ -92,6 +92,11 @@ __END__
 =head1 NAME
 
 Bag::Similarity - Similarity measures for bags
+
+=for html
+
+<a href="https://travis-ci.org/wollmers/Bag-Similarity"><img src="https://travis-ci.org/wollmers/Bag-Similarity.png" alt="Bag-Similarity"></a>
+<a href='https://coveralls.io/r/wollmers/Bag-Similarity?branch=master'><img src='https://coveralls.io/repos/wollmers/Bag-Similarity/badge.png?branch=master' alt='Coverage Status' /></a>
 
 =head1 SYNOPSIS
 
