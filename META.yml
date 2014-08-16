@@ -3,6 +3,7 @@ abstract: 'Similarity measures for bags'
 author:
   - 'Helmut Wollmersdorfer <helmut.wollmersdorfer@gmail.com>'
 build_requires:
+  Test::Exception: '0'
   Test::More: '0.88'
 configure_requires:
   Module::Build::Tiny: '0.036'
@@ -28,6 +29,6 @@ resources:
   bugtracker: https://github.com/wollmers/Bag-Similarity/issues
   homepage: https://github.com/wollmers/Bag-Similarity
   repository: https://github.com/wollmers/Bag-Similarity.git
-version: '0.008'
+version: '0.009'
 x_contributors:
   - 'Helmut Wollmersdorfer <helmut@wollmersdorfer.at>'

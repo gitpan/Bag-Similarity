@@ -12,6 +12,7 @@ lib/Bag/Similarity.pm
 lib/Bag/Similarity/Cosine.pm
 lib/Bag/Similarity/Dice.pm
 lib/Bag/Similarity/Jaccard.pm
+t/10_similarity.t
 t/10_similarity_cosine.t
 t/10_similarity_dice.t
 t/10_similarity_jaccard.t

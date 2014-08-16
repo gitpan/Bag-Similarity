@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use 5.008_005;
-our $VERSION = '0.008';
+our $VERSION = '0.009';
 
 use Carp 'croak';
 
@@ -77,11 +77,6 @@ sub from_tokens {
 }
 
 sub from_bags { croak 'Method "from_bags" not implemented in subclass' }
-
-sub min {
-  (scalar(@{$_[1]}) < scalar(@{$_[2]}))
-    ? scalar(@{$_[1]}) : scalar(@{$_[2]});
-}
 
 1;
 

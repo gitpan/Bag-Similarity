@@ -1,5 +1,8 @@
 Revision history for Bag-Similarity
 
+0.009  2014-08-16 13:42:55 CEST
+       - improve test coverage
+
 0.008  2014-08-16 07:43:22 CEST
        - add travis
 
