@@ -5,7 +5,7 @@ use warnings;
 
 use parent 'Bag::Similarity';
 
-our $VERSION = '0.009';
+our $VERSION = '0.010';
 
 sub from_bags {
   my ($self, $bag1, $bag2) = @_;
