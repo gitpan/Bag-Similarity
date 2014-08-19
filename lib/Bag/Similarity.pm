@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use 5.008_005;
-our $VERSION = '0.010';
+our $VERSION = '0.011';
 
 use Carp 'croak';
 
@@ -59,12 +59,7 @@ sub ngrams {
 }
 
 sub from_tokens {
-  my $self = shift;
-  my $tokens1 = shift || [];
-  my $tokens2 = shift || [];
-
-  $tokens1 = ref $tokens1 ? $tokens1 : [$tokens1];
-  $tokens2 = ref $tokens2 ? $tokens2 : [$tokens2];
+  my ($self, $tokens1, $tokens2) = @_;
 
   # uncoverable condition false
   return 1 if (!scalar @$tokens1 && !scalar @$tokens2);
