@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use 5.008_005;
-our $VERSION = '0.011';
+our $VERSION = '0.012';
 
 use Carp 'croak';
 
@@ -43,12 +43,17 @@ sub _any {
 sub ngrams {
   my ($self, $word, $width) = @_;
 
-  $width = 1 unless defined $width;
+  $width = 1 unless ($width && $width =~ m/^[1-9][0-9]*$/x);
   $word ||= '';
 
   my @ngrams;
-  return @ngrams 
-    unless ($width =~ m/^[1-9][0-9]*$/x && $width <= length($word));
+  #return @ngrams unless ($width <= length($word));
+  
+  if ($width > length($word)) {
+    for (1..$width-length($word)) {
+      $word .= ' ';
+    }
+  }
 
   for my $i (0..length($word)-$width) {
     my $ngram = substr $word,$i,$width;
