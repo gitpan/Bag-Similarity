@@ -1,5 +1,8 @@
 Revision history for Bag-Similarity
 
+0.013  2014-08-20 20:02:45 CEST
+       - remove n-gram padding, return the unchanged word if shorter
+
 0.012  2014-08-20 09:05:29 CEST
        - pad if length word < n-gram width
 
