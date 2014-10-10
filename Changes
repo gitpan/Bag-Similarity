@@ -1,5 +1,9 @@
 Revision history for Bag-Similarity
 
+0.014  2014-10-10 10:17:16 CEST
+       - improved test coverage
+       - ngram returns string if shorter than width
+
 0.013  2014-08-20 20:02:45 CEST
        - remove n-gram padding, return the unchanged word if shorter
 

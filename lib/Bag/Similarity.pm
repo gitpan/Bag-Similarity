@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use 5.008_005;
-our $VERSION = '0.013';
+our $VERSION = '0.014';
 
 use Carp 'croak';
 
@@ -46,22 +46,15 @@ sub ngrams {
   $width = 1 unless ($width && $width =~ m/^[1-9][0-9]*$/x);
   $word ||= '';
 
-  my @ngrams;
   return ($word) unless ($width <= length($word));
 
-  for my $i (0..length($word)-$width) {
-    my $ngram = substr $word,$i,$width;
-    push @ngrams,$ngram;
-  }
-
-  return @ngrams;
+  return map {substr $word,$_,$width;} (0..length($word)-$width);
 }
 
 sub from_tokens {
   my ($self, $tokens1, $tokens2) = @_;
 
-  # uncoverable condition false
-  return 1 if (!scalar @$tokens1 && !scalar @$tokens2);
+  return 1 if (!(scalar @$tokens1 || scalar @$tokens2));
   return 0 unless (scalar @$tokens1 && scalar @$tokens2 );
     
   return $self->from_bags(
