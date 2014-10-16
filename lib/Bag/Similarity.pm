@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use 5.008_005;
-our $VERSION = '0.014';
+our $VERSION = '0.015';
 
 use Carp 'croak';
 
@@ -64,6 +64,29 @@ sub from_tokens {
 }
 
 sub from_bags { croak 'Method "from_bags" not implemented in subclass' }
+
+sub intersection {
+  my ($self, $tokens1, $tokens2) = @_; 
+  my %bag1;
+  my %bag2;
+  $bag1{$_}++ for @{$tokens1};
+  $bag2{$_}++ for @{$tokens2};
+  my $intersection = 0;
+  for (keys %bag1) {
+    next unless (exists $bag2{$_} );
+    $intersection += ( $bag2{$_} < $bag1{$_}) ? $bag2{$_} : $bag1{$_};
+  }
+  return $intersection;
+}
+
+sub combined_length {
+  scalar(@{$_[1]}) + scalar(@{$_[2]});
+}
+
+sub min {
+  (scalar(@{$_[1]}) < scalar(@{$_[2]}))
+    ? scalar(@{$_[1]}) : scalar(@{$_[2]});
+}
 
 1;
 

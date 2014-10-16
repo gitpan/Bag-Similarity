@@ -6,16 +6,17 @@ use warnings;
 use parent 'Bag::Similarity';
 use Bag::Similarity::Dice;
 
-our $VERSION = '0.014';
+our $VERSION = '0.015';
 
 sub from_bags {
-  my ($self, $bag1, $bag2) = @_;
-  
-  my $dice = Bag::Similarity::Dice->similarity($bag1,$bag2);
-  
-  my $jaccard = $dice / (2 - $dice);
-  return $jaccard;
+  my ($self, $set1, $set2) = @_;
+
+  my $intersection = $self->intersection($set1,$set2);
+  my $union = $self->combined_length($set1,$set2) - $intersection;
+  # ( A intersect B ) / (A union B)
+  return ($intersection / $union);
 }
+
 
 
 1;
@@ -41,7 +42,11 @@ Bag::Similarity::Jaccard - Jaccard similarity for bags
 =head2 Jaccard similarity
 
  $dice / (2 - $dice)
+ 
+or
 
+ ( A intersect B ) / (A union B)
+ 
 
 =head1 METHODS
 

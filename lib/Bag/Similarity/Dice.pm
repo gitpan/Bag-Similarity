@@ -5,61 +5,15 @@ use warnings;
 
 use parent 'Bag::Similarity';
 
-our $VERSION = '0.014';
+our $VERSION = '0.015';
 
 sub from_bags {
   my ($self, $set1, $set2) = @_;
-  return $self->_similarity(
-	$set1,
-	$set2
+  
+  # $dice = ($intersection * 2 / $combined_length);
+  return (
+    $self->intersection($set1,$set2) * 2 / $self->combined_length($set1,$set2)
   );
-}
-
-sub _similarity {
-  my ( $self, $tokens1,$tokens2 ) = @_;
-		
-  my $vector1 = $self->make_vector( $tokens1 );
-  my $vector2 = $self->make_vector( $tokens2 );
-
-  my $dot = $self->dot( 
-	$vector1, 
-	$vector2 
-  );
-  my $dice = 2 * $dot / (
-    $self->norm($vector1) ** 2 
-    + $self->norm($vector2) ** 2
-  );
-  return $dice;
-}
-
-sub make_vector {			
-  my ( $self, $tokens ) = @_;
-  my %elements;  
-  do { $_++ } for @elements{@$tokens};
-  return \%elements;
-}	
-
-sub norm {
-  my $self = shift;
-  my $vector = shift;
-  my $sum = 0;
-  for my $key (keys %$vector) {
-    $sum += $vector->{$key} ** 2;
-  }
-  return sqrt $sum;
-}
-
-sub dot {
-  my $self = shift;
-  my $vector1 = shift;
-  my $vector2 = shift;
-
-  my $dotprod = 0;
-
-  for my $key (keys %$vector1) {
-    $dotprod += $vector1->{$key} * $vector2->{$key} if ($vector2->{$key});
-  }
-  return $dotprod;
 }
 
 1;

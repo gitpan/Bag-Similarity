@@ -25,8 +25,8 @@ is($object->similarity(['a','b'],[]),0,'ab, empty tokens');
 is($object->similarity([],[]),1,'both empty tokens');
 is($object->similarity(['a','b'],['a','b']),1,'equal  ab tokens');
 is($object->similarity(['a','b'],['c','d']),0,'ab unequal cd tokens');
-is(d3($object->similarity(['a','b','a','a'],['b','c','c','c','d'])),'0.050','abaa 0.050 bcccd tokens');
-is(d3($object->similarity(['a','b','a','b'],['b','c','c','c','d'])),'0.118','abab 0.118 bccc tokens');
+is(d3($object->similarity(['a','b','a','a'],['b','c','c','c','d'])),'0.125','abaa 0.125 bcccd tokens');
+is(d3($object->similarity(['a','b','a','b'],['b','c','c','c','d'])),'0.125','abab 0.125 bccc tokens');
 
 is($object->similarity({},{'a' => 1,'b' => 1}),0,'empty, ab features');
 is($object->similarity({'a' => 1,'b' => 1},{}),0,'ab, empty features');
@@ -40,14 +40,14 @@ is($object->similarity({'a' => 1,'b' => 1},{'c' => 1,'d' => 1}),0,'ab unequal cd
 
 is($object->similarity('ab','ab'),1,'equal  ab strings');
 is($object->similarity('ab','cd'),0,'ab unequal cd strings');
-is(d3($object->similarity('abaa','bcccd')),'0.050','abaa 0.050 bccc strings');
-is(d3($object->similarity('abab','bcccd')),'0.118','abab 0.118 bccc strings');
+is(d3($object->similarity('abaa','bcccd')),'0.125','abaa 0.125 bccc strings');
+is(d3($object->similarity('abab','bcccd')),'0.125','abab 0.125 bccc strings');
 is(d3($object->similarity('ab','abcd')),'0.500','ab 0.5 abcd strings');
 
 is($object->similarity('ab','ab',2),1,'equal  ab bigrams');
 is($object->similarity('ab','cd',2),0,'ab unequal cd bigrams');
 is($object->similarity('abaa','bccc',2),0,'abaa 0 bccc bigrams');
-is(d3($object->similarity('abcabc','bccc',2)),'0.167','abcabcf 0.167 bcccah bigrams');
+is(d3($object->similarity('abcabc','bccc',2)),'0.143','abcabcf 0.143 bcccah bigrams');
 is(d3($object->similarity('abc','abcdef',2)),'0.400','abc 0.4 abcdef bigrams');
 
 {
@@ -55,11 +55,11 @@ use utf8;
 is($object->similarity('äb','äb',2),1,'equal  ab bigrams');
 is($object->similarity('äb','cd',2),0,'ab unequal cd bigrams');
 is($object->similarity('äbää','bccc',2),0,'abaa 0 bccc bigrams');
-is(d3($object->similarity('äbcäbc','bccc',2)),'0.167','abcabcf 0.167 bcccah bigrams');
+is(d3($object->similarity('äbcäbc','bccc',2)),'0.143','abcabcf 0.143 bcccah bigrams');
 is(d3($object->similarity('äbc','äbcdef',2)),'0.400','abc 0.4 abcdef bigrams');
 }
 
-is(d3($object->similarity('Photographer','Fotograf')), '0.474','Photographer 0.474 Fotograf strings');
+is(d3($object->similarity('Photographer','Fotograf')), '0.429','Photographer 0.429 Fotograf strings');
 
 is(d3($object->similarity('Photographer','Fotograf',2)),  '0.385','Photographer 0.385 Fotograf bigrams');
 

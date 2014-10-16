@@ -1,5 +1,8 @@
 Revision history for Bag-Similarity
 
+0.015  2014-10-16 23:18:34 CEST
+       - now Dice and Jaccard are correct
+
 0.014  2014-10-10 10:17:16 CEST
        - improved test coverage
        - ngram returns string if shorter than width
