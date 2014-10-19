@@ -1,5 +1,8 @@
 Revision history for Bag-Similarity
 
+0.018  2014-10-19 22:45:38 CEST
+       - retry release
+
 0.017  2014-10-19 22:37:27 CEST
        - naming internal methods
 
