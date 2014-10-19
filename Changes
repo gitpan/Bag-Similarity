@@ -1,5 +1,8 @@
 Revision history for Bag-Similarity
 
+0.017  2014-10-19 22:37:27 CEST
+       - naming internal methods
+
 0.016  2014-10-19 10:27:00 CEST
        - add Overlap
        - improve docs

@@ -5,19 +5,19 @@ use warnings;
 
 use parent 'Bag::Similarity';
 
-our $VERSION = '0.016';
+our $VERSION = '0.017';
 
 sub from_bags {
   my ($self, $bag1, $bag2) = @_;
   
-  my $cosine = $self->cosine( 
-	$self->normalize($self->make_vector( $bag1 )), 
-	$self->normalize($self->make_vector( $bag2 )) 
+  my $cosine = $self->_cosine( 
+	$self->_normalize($self->_make_vector( $bag1 )), 
+	$self->_normalize($self->_make_vector( $bag2 )) 
   );
   return $cosine;
 }
 
-sub make_vector {			
+sub _make_vector {			
   my ( $self, $tokens ) = @_;
   my %elements;  
   do { $_++ } for @elements{@$tokens};
@@ -25,9 +25,9 @@ sub make_vector {
 }	
 
 # Assumes both incoming vectors are normalized
-sub cosine { shift->dot( @_ ) }
+sub _cosine { shift->_dot( @_ ) }
 
-sub norm {
+sub _norm {
   my $self = shift;
   my $vector = shift;
   my $sum = 0;
@@ -37,17 +37,17 @@ sub norm {
   return sqrt $sum;
 }
 
-sub normalize {
+sub _normalize {
   my $self = shift;
   my $vector = shift;
 
-  return $self->div(
+  return $self->_div(
     $vector,
-    $self->norm($vector)
+    $self->_norm($vector)
   );
 }
 
-sub dot {
+sub _dot {
   my $self = shift;
   my $vector1 = shift;
   my $vector2 = shift;
@@ -62,7 +62,7 @@ sub dot {
 
 
 # divides each vector entry by a given divisor
-sub div {
+sub _div {
   my $self = shift;
   my $vector = shift;
   my $divisor = shift;
