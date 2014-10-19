@@ -29,6 +29,6 @@ resources:
   bugtracker: https://github.com/wollmers/Bag-Similarity/issues
   homepage: https://github.com/wollmers/Bag-Similarity
   repository: https://github.com/wollmers/Bag-Similarity.git
-version: '0.015'
+version: '0.016'
 x_contributors:
   - 'Helmut Wollmersdorfer <helmut@wollmersdorfer.at>'

@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use 5.008_005;
-our $VERSION = '0.015';
+our $VERSION = '0.016';
 
 use Carp 'croak';
 
@@ -109,6 +109,53 @@ Bag::Similarity - Similarity measures for bags
 =head1 DESCRIPTION
 
 Bag::Similarity is the base class for similarity measures of bags.
+
+=head1 METHODS
+
+All methods can be used as class or object methods.
+
+=head2 new
+
+  $object = Bag::Similarity->new();
+
+=head2 similarity
+
+  my $similarity = $object->similarity($any1,$any1,$width);
+  
+C<$any> can be an arrayref, a hashref or a string. Strings are tokenized into n-grams of width C<$width>.
+
+C<$width> must be integer, or defaults to 1.
+  
+=head2 from_tokens
+
+  my $similarity = $object->from_tokens(['a','b'],['b']);
+
+=head2 from_bags
+
+  my $similarity = $object->from_bags(['a'],['b']);
+  
+Croaks if called directly. This method should be implemented in a child module.
+
+=head2 intersection
+
+  my $intersection_size = $object->intersection(['a'],['b']);
+
+=head2 combined_length
+
+  my $set_size_sum = $object->combined_length(['a'],['b']);
+
+=head2 min
+
+  my $min_set_size = $object->min(['a'],['b']);
+  
+=head2 ngrams
+
+  my @monograms = $object->ngrams('abc');
+  my @bigrams = $object->ngrams('abc',2);
+
+=head2 _any
+
+  my $arrayref = $object->_any($any,$width);  
 
 =head1 AUTHOR
 

@@ -1,5 +1,9 @@
 Revision history for Bag-Similarity
 
+0.016  2014-10-19 10:27:00 CEST
+       - add Overlap
+       - improve docs
+
 0.015  2014-10-16 23:18:34 CEST
        - now Dice and Jaccard are correct
 
